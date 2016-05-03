@@ -5,12 +5,32 @@
  */
 package musicgenerator;
 import java.lang.Math;
+import java.util.*;
 /**
  *
  * @author user
  */
 public class MarkovChain {
-    randomNum = 0 + (int)(Math.random);
+    
+    double[][] transition;
+    int states;
+    int curState;
+    
+    
+    public void runMarkov(){
+    //double r = (int) Math.ceil(Math.random() * 100);
+    double r = Math.random();
+    double sum = 0.0;
+    for (int j = 0; j < states ; j++){
+        sum += transition[curState][j];
+        if (r <= sum){
+           curState = j;
+           break;
+        }
+        
+    }
+    
+}
     
     
 }
