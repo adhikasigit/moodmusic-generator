@@ -15,6 +15,6 @@ import javax.sound.midi.Synthesizer;
  *
  * @author user
  */
-public class MidiPlayer {
-    
+public class MidiHandler {
+    // Use to simplify main class usage to easy numbers
 }
