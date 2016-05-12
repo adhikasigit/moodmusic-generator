@@ -17,24 +17,18 @@ public class MarkovChain {
     int curState;
     boolean done = false;
     
-    
-    public void runMarkov(){
-    //double r = (int) Math.ceil(Math.random() * 100);
-    System.out.println(curState);
-    while (curState > 0){
+    public void nextState(){
+        System.out.println(curState);
         double r = Math.random();
-       // System.out.println("random = " + r);
         double sum = 0.0;
-        for (int j = 0; j < states ; j++){
-            sum += transition[curState][j];
-            //System.out.println("Sum = " + sum);
+        for(int j = 0; j < states ; j++){
+            sum+= transition[curState][j];
             if (sum >= r){
-                curState = j;
+                curState = j + 1;
                 break;
-            }
+            }    
         }
-    }
-    
+        System.out.println(curState);
     }
     
 

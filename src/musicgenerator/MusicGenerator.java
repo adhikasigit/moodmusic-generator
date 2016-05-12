@@ -28,7 +28,7 @@ public class MusicGenerator {
         Mc.states = 7;
         Mc.curState = 1;
         
-        Mc.runMarkov();
+        Mc.nextState();
         
         // TODO code application logic here
     }
