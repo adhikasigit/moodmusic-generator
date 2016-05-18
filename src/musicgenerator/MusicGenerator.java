@@ -19,24 +19,7 @@ public class MusicGenerator {
                                 { 0.000, 0.103, 0.041, 0.088, 0.391, 0.312, 0.155},
                                 { 0.000, 0.008, 0.036, 0.083, 0.364, 0.235, 0.274}
                               };
-     static double[][] CT1;
-     static double[][] CT2;
-     static double[][] CT3;
-     static double[][] CT4;
-     static double[][] CT5;
-     static double[][] CT6;
-     static double[][] CT7;
-     static double[][] CT8;
-     static double[][] NT1;
-     static double[][] NT2;
-     static double[][] NT3;
-     static double[][] NT4;
-     static double[][] NT5;
-     static double[][] NT6;
-     static double[][] NT7;
-     static double[][] OkT;
-     static double[][] VT1;
-     static double[][] VT2;
+
      
     public static void main(String[] args) {
         

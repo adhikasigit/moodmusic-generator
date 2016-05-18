@@ -17,14 +17,14 @@ public class EmotionHandler {
     public double[][] ValMC;
     
     public void setLowNegativeAffect(){
-        double[][] CT1;
+        /*double[][] CT1;
         ChordMC = CT1;
         double[][] NT1;
         NoteMC = NT1;
         double[][] OT1;
         OctMC = OT1;
         double[][] = VT1;
-        ValMC = VT1;
+        ValMC = VT1; */
         
     }
     //do the same for all emotion

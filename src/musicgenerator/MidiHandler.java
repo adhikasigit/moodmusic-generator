@@ -7,14 +7,41 @@
 
 package musicgenerator;
 
-import javax.sound.midi.MidiChannel;
-import javax.sound.midi.MidiSystem;
-import javax.sound.midi.MidiUnavailableException;
-import javax.sound.midi.Synthesizer;
+import jm.JMC;
+import jm.music.data.*;
+import jm.midi.*;
+import jm.util.*;
 /**
  *
  * @author user
  */
 public class MidiHandler {
-    // Use to simplify main class usage to easy numbers
+    
+      public void newScore(){
+          
+      }
+    
+      public void newPart(){
+          
+      }
+      
+      public void newPhrase(){
+          
+      }
+      public void newNote(){
+          
+      }
+
+      public void addPartToScore(Score score, Part part){
+          
+      }
+      
+      public void addPhraseToPart(Part part, Phrase phrase){
+          
+      }
+      
+      public void addNoteToPhrase(Phrase phrase, Note note){
+          
+      }
+   
 }
