@@ -12,7 +12,7 @@ package musicgenerator;
 public class EmotionHandler {
     //use to simplify case for Main
     public double[][] ChordMC;
-    public double[][] NoteMC; //Might be changing with chordMC?? move to main??
+    public double[][] NoteMC; 
     public double[][] OctMC;
     public double[][] ValMC;
     

@@ -5,13 +5,17 @@
  */
 package musicgenerator;
 
+import jm.JMC;
+import jm.music.data.*;
+import jm.midi.*;
+import jm.util.*;
 /**
  *
  * @author user
  */
 public class MusicGenerator {
 
-     static double[][] transisi = { { 0.386, 0.147, 0.202, 0.062, 0.140, 0.047, 0.016},
+    static double[][] transisi = { { 0.386, 0.147, 0.202, 0.062, 0.140, 0.047, 0.016},
                                 { 0.107, 0.267, 0.227, 0.120, 0.207, 0.052, 0.020},
                                 { 0.035, 0.101, 0.188, 0.191, 0.357, 0.067, 0.061},
                                 { 0.021, 0.039, 0.112, 0.212, 0.431, 0.124, 0.061},
@@ -30,14 +34,31 @@ public class MusicGenerator {
         //fill constraints
         //feed values of MC + Constraint to MIDI
         //Play
+        MarkovChain mc = new MarkovChain();
+        mc.transition = transisi;
+        mc.states = 6;
+        mc.curState = 5;
+                
+        int map[] = {60,62,64,65,67,69,71,72};
         
-        MarkovChain Mc = new MarkovChain();
+        Score scr = new Score();
+        Part par = new Part();
+        Phrase phr = new Phrase();
+        Note not = new Note();
+        not.setPitch(map[mc.curState - 1]);
+        phr.addNote(not);
         
-        Mc.transition = transisi;
-        Mc.states = 7;
-        Mc.curState = 1;
+        for(int i=0;i<30;i++){
+            mc.nextState();
+            Note n = new Note();
+            n.setPitch(map[mc.curState - 1]);
+            System.out.println(n.getPitch());
+            phr.addNote(n);
+        }
+        par.addPhrase(phr);
+        scr.addPart(par);
+        Play.midi(scr);
         
-        Mc.nextState();
         
         // TODO code application logic here
     }
