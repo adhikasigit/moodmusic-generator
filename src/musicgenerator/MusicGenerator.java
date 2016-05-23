@@ -34,29 +34,34 @@ public class MusicGenerator {
         //fill constraints
         //feed values of MC + Constraint to MIDI
         //Play
-        MarkovChain mc = new MarkovChain();
-        mc.transition = transisi;
-        mc.states = 6;
-        mc.curState = 5;
+        MarkovChain NoteMC = new MarkovChain();
+        MarkovChain OctMC = new MarkovChain();
+        MarkovChain ValMC = new MarkovChain();
+        
+        NoteMC.transition = transisi;
+        NoteMC.states = 7;
+        NoteMC.curState = 5;
                 
         int map[] = {60,62,64,65,67,69,71,72};
+        
+        MidiHandler Melody = new MidiHandler();
         
         Score scr = new Score();
         Part par = new Part();
         Phrase phr = new Phrase();
         Note not = new Note();
-        not.setPitch(map[mc.curState - 1]);
+        not.setPitch(map[NoteMC.curState - 1]);
         phr.addNote(not);
         
         for(int i=0;i<30;i++){
-            mc.nextState();
+            NoteMC.nextState();
             Note n = new Note();
-            n.setPitch(map[mc.curState - 1]);
+            n.setPitch(map[NoteMC.curState - 1]);
             System.out.println(n.getPitch());
-            phr.addNote(n);
+            Melody.phrase.addNote(n);
         }
-        par.addPhrase(phr);
-        scr.addPart(par);
+        Melody.part.addPhrase(phr);
+        scr.addPart(Melody.part);
         Play.midi(scr);
         
         

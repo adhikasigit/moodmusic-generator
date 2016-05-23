@@ -17,31 +17,7 @@ import jm.util.*;
  */
 public class MidiHandler {
     
-      public void newScore(){
-          
-      }
-    
-      public void newPart(){
-          
-      }
-      
-      public void newPhrase(){
-          
-      }
-      public void newNote(){
-          
-      }
-
-      public void addPartToScore(Score score, Part part){
-          
-      }
-      
-      public void addPhraseToPart(Part part, Phrase phrase){
-          
-      }
-      
-      public void addNoteToPhrase(Phrase phrase, Note note){
-          
-      }
+     Part part = new Part();
+     Phrase phrase = new Phrase();
    
 }
