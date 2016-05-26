@@ -19,5 +19,13 @@ public class MidiHandler {
     
      Part part = new Part();
      Phrase phrase = new Phrase();
-   
+     int OctMap[];
+     
+     public void setOctave(int map[]){
+         
+     }
+     
+     /*NOTES ON OCTAVE RANGE
+     0.5 chance to stay in same octave, 0.25 chance
+     or smaller to go to another octave*/
 }

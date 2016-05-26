@@ -14,7 +14,11 @@ public class EmotionHandler {
     public double[][] ChordMC;
     public double[][] NoteMC; 
     public double[][] OctMC;
-    public double[][] ValMC;
+    public double[][] ValMC; // ini semua keluaran dari EmotionHandler
+    public int emoMap[];
+    public double emoTempo;
+    public int emoPitch;
+    
     
     public void setLowNegativeAffect(){
         /*double[][] CT1;
@@ -24,7 +28,8 @@ public class EmotionHandler {
         double[][] OT1;
         OctMC = OT1;
         double[][] = VT1;
-        ValMC = VT1; */
+        ValMC = VT1; 
+        int */
         
     }
     //do the same for all emotion

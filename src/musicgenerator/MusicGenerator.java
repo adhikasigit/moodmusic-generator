@@ -42,30 +42,31 @@ public class MusicGenerator {
         NoteMC.states = 7;
         NoteMC.curState = 7;
                 
-        int map[] = {60,62,64,65,67,69,71,72};
+        int map[] = {60,62,64,65,67,69,71};
+        int map1[] = {24,26,28,29,31,33,35};
+        int map2[] = {96,98,100,101,103,105,107};
+        
         
         MidiHandler Melody = new MidiHandler();
         Score scr = new Score();
         
-        Note FirstNote = new Note();
-        FirstNote.setPitch(map[NoteMC.curState - 1]);
-        Melody.phrase.addNote(FirstNote);
         
-        //use for logic as measuring in music
-        for(int i=0;i<5;i++){
+        for(int i=0;i<20;i++){
             NoteMC.nextState();
             if (NoteMC.curState == 8){
                 //Rest
             }
             else{
                 Note n = new Note();
-                n.setPitch(map[NoteMC.curState - 1]);
-                System.out.println(n.getPitch());
+                n.setPitch(map2[NoteMC.curState - 1]);
+                //System.out.println(n.getPitch());
                 Melody.phrase.addNote(n);
             }
         }
         Melody.part.addPhrase(Melody.phrase);
         scr.addPart(Melody.part);
+        scr.setTempo(300.0);
+        
         Play.midi(scr);
         
         
