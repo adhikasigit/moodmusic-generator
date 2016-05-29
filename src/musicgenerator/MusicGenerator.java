@@ -9,6 +9,7 @@ import jm.JMC;
 import jm.music.data.*;
 import jm.midi.*;
 import jm.util.*;
+import java.util.Random;
 /**
  *
  * @author user
@@ -16,11 +17,11 @@ import jm.util.*;
 public class MusicGenerator {
 
     static double[][] transisi = { { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142},
-                                { 0.107, 0.267, 0.227, 0.120, 0.207, 0.052, 0.020},
-                                { 0.035, 0.101, 0.188, 0.191, 0.357, 0.067, 0.061},
-                                { 0.021, 0.039, 0.112, 0.212, 0.431, 0.124, 0.061},
-                                { 0.009, 0.024, 0.075, 0.123, 0.473, 0.171, 0.125},
-                                { 0.000, 0.103, 0.041, 0.088, 0.391, 0.312, 0.155},
+                                { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142},
+                                { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142},
+                                { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142},
+                                { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142},
+                                { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142},
                                 { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142}
                               };
 
@@ -34,9 +35,13 @@ public class MusicGenerator {
         //fill constraints
         //feed values of MC + Constraint to MIDI
         //Play
+        
+        Random randnum =  new Random();
         MarkovChain NoteMC = new MarkovChain();
         MarkovChain OctMC = new MarkovChain();
         MarkovChain ValMC = new MarkovChain();
+        MarkovChain ChordMC = new MarkovChain();
+        int transposer = randnum.nextInt(12) + 1;
         
         NoteMC.transition = transisi;
         NoteMC.states = 7;
@@ -58,19 +63,19 @@ public class MusicGenerator {
             }
             else{
                 Note n = new Note();
-                n.setPitch(map2[NoteMC.curState - 1]);
+                n.setPitch(map1[NoteMC.curState - 1]);
                 //System.out.println(n.getPitch());
                 Melody.phrase.addNote(n);
             }
         }
         Melody.part.addPhrase(Melody.phrase);
         scr.addPart(Melody.part);
-        scr.setTempo(300.0);
+        scr.setTempo(60.0);
         
         Play.midi(scr);
         
         
-        // TODO code application logic here
+        
     }
     
 }
