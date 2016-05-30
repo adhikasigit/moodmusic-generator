@@ -39,6 +39,11 @@ public class EmotionHandler {
                         };
         ValueMC = VT1; 
         
+         double[][] OT = { {0.8,0.1,0.1},
+                          {0.1,0.8,0.1},
+                          {0.1,0.1,0.8}    
+                        };
+        OctMC = OT;
     }
     public void setPleasantness(){
         emoTempo = 160.0;
@@ -51,6 +56,13 @@ public class EmotionHandler {
                            {0.25,0.25,0.25,0.25}
                         };
         ValueMC = VT1; 
+        
+         
+         double[][] OT = { {0.6,0.2,0.2},
+                          {0.2,0.6,0.2},
+                          {0.2,0.2,0.6}    
+        };
+        OctMC = OT;
     }
     
     public void setHighPositiveAffect(){
@@ -64,6 +76,12 @@ public class EmotionHandler {
                            {0.25,0.25,0.25,0.25}
                         };
         ValueMC = VT1; 
+         
+       double[][] OT = { {0.6,0.2,0.2},
+                          {0.2,0.6,0.2},
+                          {0.2,0.2,0.6}    
+        };
+        OctMC = OT;
     }
     public void setStrongEngagement(){
         emoTempo = 220.0;
@@ -76,6 +94,12 @@ public class EmotionHandler {
                            {0.25,0.25,0.25,0.25}
                         };
         ValueMC = VT1; 
+         
+         double[][] OT = { {0.6,0.2,0.2},
+                          {0.2,0.6,0.2},
+                          {0.2,0.2,0.6}    
+        };
+        OctMC = OT;
     }
     public void setHighNegativeAffect(){
         emoTempo = 120.0;
@@ -88,6 +112,13 @@ public class EmotionHandler {
                            {0.25,0.25,0.25,0.25}
                         };
         ValueMC = VT1; 
+        
+         
+         double[][] OT = { {0.6,0.2,0.2},
+                          {0.2,0.6,0.2},
+                          {0.2,0.2,0.6}    
+        };
+        OctMC = OT;
     }
     public void setUnpleasantness(){
         emoTempo = 90.0;
@@ -100,6 +131,13 @@ public class EmotionHandler {
                            {0.25,0.25,0.25,0.25}
                         };
         ValueMC = VT1; 
+        
+         
+        double[][] OT = { {0.6,0.2,0.2},
+                          {0.2,0.6,0.2},
+                          {0.2,0.2,0.6}    
+        };
+        OctMC = OT;
     }
     public void setLowPositiveAffect(){
         emoTempo = 70.0;
@@ -112,6 +150,12 @@ public class EmotionHandler {
                            {0.25,0.25,0.25,0.25}
                         };
         ValueMC = VT1; 
+        
+        double[][] OT = { {0.6,0.2,0.2},
+                          {0.2,0.6,0.2},
+                          {0.2,0.2,0.6}    
+        };
+        OctMC = OT;
     }
     public void setDisengagement(){
         emoTempo = 60.0;
@@ -124,6 +168,12 @@ public class EmotionHandler {
                            {0.25,0.25,0.25,0.25}
                         };
         ValueMC = VT1; 
+         
+        double[][] OT = { {0.6,0.2,0.2},
+                          {0.2,0.6,0.2},
+                          {0.2,0.2,0.6}    
+        };
+        OctMC = OT;
     }
     //do the same for all emotion
 }

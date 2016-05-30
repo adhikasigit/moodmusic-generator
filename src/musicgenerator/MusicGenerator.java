@@ -9,6 +9,7 @@ import jm.JMC;
 import jm.music.data.*;
 import jm.midi.*;
 import jm.util.*;
+import jm.music.tools.Mod;
 import java.util.Random;
 /**
  *
@@ -31,7 +32,8 @@ public class MusicGenerator {
                            {0.25,0.25,0.25,0.25}
                         };
      
-    static double[] ValMap = {JMC.QUAVER, JMC.CROTCHET, JMC.MINIM ,JMC.SEMIBREVE}; 
+    static double[] ValMap = {JMC.QUAVER, JMC.CROTCHET, JMC.MINIM ,JMC.SEMIBREVE};
+    static int[] OctMap = {-12,0,12};
      
     public static void main(String[] args) {
         
@@ -55,6 +57,10 @@ public class MusicGenerator {
         NoteMC.transition = transisi;
         NoteMC.states = 7;
         NoteMC.curState = 7;
+        
+        OctMC.transition = Emotion.OctMC;
+        OctMC.states = 3;
+        OctMC.curState = 2;
        
         ValMC.transition = Emotion.ValueMC;
         ValMC.states = 4;
@@ -68,21 +74,22 @@ public class MusicGenerator {
         for(int i=0;i<20;i++){
             NoteMC.nextState();
             ValMC.nextState();
+            OctMC.nextState();
             if (NoteMC.curState == 8){
                 //Rest
             }
             else{
                 Note n = new Note();
-                n.setPitch(Emotion.emoMap[NoteMC.curState - 1]);
+                n.setPitch(Emotion.emoMap[NoteMC.curState - 1] + OctMap[OctMC.curState - 1]);
                 n.setLength(ValMap[ValMC.curState - 1]);
-                //System.out.println(n.getPitch());
+                System.out.println(n.getPitch());
                 Melody.phrase.addNote(n);
             }
         }
         Melody.part.addPhrase(Melody.phrase);
         scr.addPart(Melody.part);
         scr.setTempo(Emotion.emoTempo);
-        
+        Mod.transpose(scr, transposer);
         Play.midi(scr); 
     }
     

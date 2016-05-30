@@ -18,7 +18,7 @@ public class MarkovChain {
     boolean done = false;
     
     public void nextState(){
-        System.out.println(curState);
+        //System.out.println(curState);
         double r = Math.random();
         //System.out.println("r = " + r);
         double sum = 0.0;
@@ -30,7 +30,7 @@ public class MarkovChain {
                 break;
             }    
         }
-        System.out.println(curState);
+        //System.out.println(curState);
     }
     
 
