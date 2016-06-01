@@ -71,26 +71,28 @@ public class MusicGenerator {
         
         System.out.println(ValMC.transition[0][0]);
         
-        for(int i=0;i<20;i++){
-            NoteMC.nextState();
-            ValMC.nextState();
-            OctMC.nextState();
-            if (NoteMC.curState == 8){
-                //Rest
+        //while(true){
+            for(int i=0;i<100;i++){
+                NoteMC.nextState();
+                ValMC.nextState();
+                OctMC.nextState();
+                if (NoteMC.curState == 8){
+                    //Rest
+                }
+                else{
+                    Note n = new Note();
+                    n.setPitch(Emotion.emoMap[NoteMC.curState - 1] + OctMap[OctMC.curState - 1]);
+                    n.setLength(ValMap[ValMC.curState - 1]);
+                    //System.out.println(n.getPitch());
+                    Melody.phrase.addNote(n);
+                }
             }
-            else{
-                Note n = new Note();
-                n.setPitch(Emotion.emoMap[NoteMC.curState - 1] + OctMap[OctMC.curState - 1]);
-                n.setLength(ValMap[ValMC.curState - 1]);
-                System.out.println(n.getPitch());
-                Melody.phrase.addNote(n);
-            }
+            Melody.part.addPhrase(Melody.phrase);
+            scr.addPart(Melody.part);
+            scr.setTempo(Emotion.emoTempo);
+                                          
+            Play.midi(scr); 
         }
-        Melody.part.addPhrase(Melody.phrase);
-        scr.addPart(Melody.part);
-        scr.setTempo(Emotion.emoTempo);
-        Mod.transpose(scr, transposer);
-        Play.midi(scr); 
-    }
+    //}
     
 }
