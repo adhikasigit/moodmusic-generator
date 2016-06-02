@@ -26,11 +26,9 @@ public class MusicGenerator {
                                 { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142}
                               };
     
-     static double[][] VT1 = { {0.25,0.25,0.25,0.25},
-                           {0.25,0.25,0.25,0.25},
-                           {0.25,0.25,0.25,0.25},
-                           {0.25,0.25,0.25,0.25}
-                        };
+    
+     
+     
      
     static double[] ValMap = {JMC.QUAVER, JMC.CROTCHET, JMC.MINIM ,JMC.SEMIBREVE};
     static int[] OctMap = {-12,0,12};
@@ -73,26 +71,28 @@ public class MusicGenerator {
         
         //while(true){
             for(int i=0;i<100;i++){
-                NoteMC.nextState();
-                ValMC.nextState();
-                OctMC.nextState();
-                if (NoteMC.curState == 8){
-                    //Rest
+                for(int j=0;i<4;i++){
+                    
+                    NoteMC.nextState();
+                    ValMC.nextState();
+                    OctMC.nextState();
+                    if (NoteMC.curState == 8){
+                        //Rest
+                    }
+                    else{
+                        Note n = new Note();
+                        n.setPitch(Emotion.emoMap[NoteMC.curState - 1] + OctMap[OctMC.curState - 1]);
+                        n.setLength(ValMap[ValMC.curState - 1]);
+                        //System.out.println(n.getPitch());
+                        Melody.phrase.addNote(n);
+                    }
                 }
-                else{
-                    Note n = new Note();
-                    n.setPitch(Emotion.emoMap[NoteMC.curState - 1] + OctMap[OctMC.curState - 1]);
-                    n.setLength(ValMap[ValMC.curState - 1]);
-                    //System.out.println(n.getPitch());
-                    Melody.phrase.addNote(n);
-                }
-            }
             Melody.part.addPhrase(Melody.phrase);
             scr.addPart(Melody.part);
             scr.setTempo(Emotion.emoTempo);
                                           
             Play.midi(scr); 
         }
-    //}
+    }
     
 }
