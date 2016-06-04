@@ -26,7 +26,7 @@ public class MusicGenerator {
                                 { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142}
                               };
     
-    
+    static double[][][] map = {MidiHandler.Maj1,MidiHandler.Min2,MidiHandler.Min3,MidiHandler.Maj4,MidiHandler.Maj5,MidiHandler.Min6,MidiHandler.Dim7};
      
      
      
@@ -49,50 +49,68 @@ public class MusicGenerator {
         MarkovChain ValMC = new MarkovChain();
         MarkovChain ChordMC = new MarkovChain();
         int transposer = randnum.nextInt(12) + 1;
+        int chordRandomizer = 1;
         
         Emotion.setLowNegativeAffect();
         
-        NoteMC.transition = transisi;
+        
+        NoteMC.transition = map[randnum.nextInt(6)];
         NoteMC.states = 7;
-        NoteMC.curState = 7;
+        NoteMC.curState = 1;
         
         OctMC.transition = Emotion.OctMC;
         OctMC.states = 3;
-        OctMC.curState = 2;
+        OctMC.curState = 1;
        
         ValMC.transition = Emotion.ValueMC;
         ValMC.states = 4;
         ValMC.curState = 1;
         
+        ChordMC.transition = Emotion.ChordMC;
+        ChordMC.states = 7;
+        ChordMC.curState = 1;
+        
         MidiHandler Melody = new MidiHandler();
+        MidiHandler Chord =  new MidiHandler();
         Score scr = new Score();
         
-        System.out.println(ValMC.transition[0][0]);
-        
         //while(true){
-            for(int i=0;i<100;i++){
-                for(int j=0;i<4;i++){
-                    
+            for(int i=0;i<20;i++){
+                ChordMC.nextState();
+                System.out.println(map[ChordMC.curState - 1]);
+                NoteMC.transition = map[ChordMC.curState - 1];
+                OctMC.nextState();
+                //initialize chord notes
+                Note cRoot = new Note();
+                Note cMid = new Note();  
+                Note cDom = new Note();
+                //setting the note pitch for each chord note
+                cRoot.setPitch(Emotion.emoMap[ChordMC.curState - 1] - 12);
+                cMid.setPitch(cRoot.getPitch() + 4);
+                cDom.setPitch (cRoot.getPitch() + 7);
+                //putting the chord notes in a note array
+                Note[] noteArray = {cRoot, cMid, cDom};
+                //using cphrase to contain the chord
+                CPhrase ChordN = new CPhrase();
+                ChordN.addChord(noteArray);
+                //adding the chord to the part
+                Chord.part.addCPhrase(ChordN);
+                for(int j=0;j<8;j++){
                     NoteMC.nextState();
                     ValMC.nextState();
-                    OctMC.nextState();
-                    if (NoteMC.curState == 8){
-                        //Rest
+                    Note n = new Note();
+                    n.setPitch(Emotion.emoMap[NoteMC.curState - 1] + OctMap[OctMC.curState - 1]);
+                    n.setLength(ValMap[ValMC.curState - 1]);
+                    System.out.println(n.getPitch());
+                    Melody.phrase.addNote(n);
                     }
-                    else{
-                        Note n = new Note();
-                        n.setPitch(Emotion.emoMap[NoteMC.curState - 1] + OctMap[OctMC.curState - 1]);
-                        n.setLength(ValMap[ValMC.curState - 1]);
-                        //System.out.println(n.getPitch());
-                        Melody.phrase.addNote(n);
-                    }
-                }
+            }
             Melody.part.addPhrase(Melody.phrase);
             scr.addPart(Melody.part);
+            scr.addPart(Chord.part);
             scr.setTempo(Emotion.emoTempo);
-                                          
             Play.midi(scr); 
-        }
-    }
+       }
+    
     
 }
