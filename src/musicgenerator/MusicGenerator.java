@@ -31,7 +31,7 @@ public class MusicGenerator {
      
      
     static double[] ValMap = {JMC.QUAVER, JMC.CROTCHET, JMC.MINIM ,JMC.SEMIBREVE};
-    static int[] OctMap = {-12,0,12};
+    static int[] OctMap = {0,12};
      
     public static void main(String[] args) {
         
@@ -51,7 +51,7 @@ public class MusicGenerator {
         int transposer = randnum.nextInt(12) + 1;
         int chordRandomizer = 1;
         
-        Emotion.setLowNegativeAffect();
+        Emotion.setHighNegativeAffect();
         
         
         NoteMC.transition = map[randnum.nextInt(6)];
@@ -59,7 +59,7 @@ public class MusicGenerator {
         NoteMC.curState = 1;
         
         OctMC.transition = Emotion.OctMC;
-        OctMC.states = 3;
+        OctMC.states = 2;
         OctMC.curState = 1;
        
         ValMC.transition = Emotion.ValueMC;
@@ -75,9 +75,9 @@ public class MusicGenerator {
         Score scr = new Score();
         
         //while(true){
-            for(int i=0;i<20;i++){
+            for(int i=0;i<100;i++){
                 ChordMC.nextState();
-                System.out.println(map[ChordMC.curState - 1]);
+                //System.out.println(map[ChordMC.curState - 1]);
                 NoteMC.transition = map[ChordMC.curState - 1];
                 OctMC.nextState();
                 //initialize chord notes
@@ -86,6 +86,9 @@ public class MusicGenerator {
                 Note cDom = new Note();
                 //setting the note pitch for each chord note
                 cRoot.setPitch(Emotion.emoMap[ChordMC.curState - 1] - 12);
+                ValMC.nextState();
+                cRoot.setLength(ValMap[ValMC.curState - 1]);
+                System.out.println(cRoot.getPitch());
                 cMid.setPitch(cRoot.getPitch() + 4);
                 cDom.setPitch (cRoot.getPitch() + 7);
                 //putting the chord notes in a note array
@@ -94,20 +97,19 @@ public class MusicGenerator {
                 CPhrase ChordN = new CPhrase();
                 ChordN.addChord(noteArray);
                 //adding the chord to the part
-                Chord.part.addCPhrase(ChordN);
                 for(int j=0;j<8;j++){
                     NoteMC.nextState();
                     ValMC.nextState();
                     Note n = new Note();
                     n.setPitch(Emotion.emoMap[NoteMC.curState - 1] + OctMap[OctMC.curState - 1]);
                     n.setLength(ValMap[ValMC.curState - 1]);
-                    System.out.println(n.getPitch());
+                    //System.out.println(n.getPitch());
                     Melody.phrase.addNote(n);
                     }
             }
             Melody.part.addPhrase(Melody.phrase);
             scr.addPart(Melody.part);
-            scr.addPart(Chord.part);
+           // scr.addPart(Chord.part);
             scr.setTempo(Emotion.emoTempo);
             Play.midi(scr); 
        }
