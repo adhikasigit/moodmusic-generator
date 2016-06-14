@@ -213,7 +213,7 @@ public class EmotionHandler {
                         };
         ValueMC = VT1; 
         
-        double[][] OT = { {0.6,0.2,0.2},
+        double[][] OT = { {0.6,0.2,0.2}, 
                           {0.2,0.6,0.2},
                           {0.2,0.2,0.6}    
         };
