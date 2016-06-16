@@ -120,7 +120,7 @@ public class MusicGenerator {
                     chordMid.phrase.addNote(cMid);
                 }
                 if (cmCounter == 0){
-                    cDom.setPitch(cRoot.getPitch() + 4);
+                    cDom.setPitch(cRoot.getPitch() + 7);
                     ValMC.nextState();
                     cDom.setLength(ValMap[ValMC.curState - 1]);
                     switch (ValMC.curState) {
@@ -178,6 +178,7 @@ public class MusicGenerator {
             scr.setTempo(Emotion.emoTempo);
             Mod.transpose(scr, transposer);
             Play.midi(scr);
+            
        }
     
     
