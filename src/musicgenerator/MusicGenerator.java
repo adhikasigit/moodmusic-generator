@@ -17,14 +17,6 @@ import java.util.Random;
  */
 public class MusicGenerator {
 
-    static double[][] transisi = { { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142},
-                                { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142},
-                                { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142},
-                                { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142},
-                                { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142},
-                                { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142},
-                                { 0.142, 0.142, 0.142, 0.142, 0.142, 0.142, 0.142}
-                              };
     
     static double[][][] map = {MidiHandler.Maj1,MidiHandler.Min2,MidiHandler.Min3,MidiHandler.Maj4,MidiHandler.Maj5,MidiHandler.Min6,MidiHandler.Dim7};
      
@@ -51,7 +43,7 @@ public class MusicGenerator {
         int transposer = randnum.nextInt(12) + 1;
         int chordRandomizer = 1;
         
-        Emotion.setLowNegativeAffect();
+        Emotion.setPleasantness();
         
         
         NoteMC.transition = map[randnum.nextInt(6)];
@@ -84,9 +76,9 @@ public class MusicGenerator {
             for(int i=0;i<1200;i++){
                 if (i % 8 == 0){
                     ChordMC.nextState();
-                
                 //System.out.println(map[ChordMC.curState - 1]);
                 NoteMC.transition = map[ChordMC.curState - 1];
+                System.out.println("Chord State = " + ChordMC.curState);
                 OctMC.nextState();
                 }
                 //initialize chord notes
@@ -152,6 +144,7 @@ public class MusicGenerator {
                // Chord.part.addCPhrase(ChordN);
                if (mCounter == 0){
                     NoteMC.nextState();
+                    System.out.println("Note state = " + NoteMC.curState);
                     ValMC.nextState();
                     Note n = new Note();
                     n.setPitch(Emotion.emoMap[NoteMC.curState - 1] + OctMap[OctMC.curState - 1]);
