@@ -43,7 +43,7 @@ public class MusicGenerator {
         int transposer = randnum.nextInt(12) + 1;
         int chordRandomizer = 1;
         
-        Emotion.setPleasantness();
+        Emotion.setHighPositiveAffect();
         
         
         NoteMC.transition = map[randnum.nextInt(6)];
