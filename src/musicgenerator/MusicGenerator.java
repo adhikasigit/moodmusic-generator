@@ -20,12 +20,15 @@ public class MusicGenerator {
     
     static double[][][] map = {MidiHandler.Maj1,MidiHandler.Min2,MidiHandler.Min3,MidiHandler.Maj4,MidiHandler.Maj5,MidiHandler.Min6,MidiHandler.Dim7};
      
-     
+    EmotionHandler Emotion = new EmotionHandler();
+    Score scr = new Score();
+    
+    boolean stopPlay = false;
      
     static double[] ValMap = {JMC.QUAVER, JMC.CROTCHET, JMC.MINIM ,JMC.SEMIBREVE};
     static int[] OctMap = {0,12};
      
-    public static void main(String[] args) {
+    public void Generate() {
         
         //initialize MIDI
         //ask for mood input
@@ -34,7 +37,8 @@ public class MusicGenerator {
         //fill constraints
         //feed values of MC + Constraint to MIDI
         //Play
-        EmotionHandler Emotion = new EmotionHandler();
+        
+        
         Random randnum =  new Random();
         MarkovChain NoteMC = new MarkovChain();
         MarkovChain OctMC = new MarkovChain();
@@ -42,8 +46,6 @@ public class MusicGenerator {
         MarkovChain ChordMC = new MarkovChain();
         int transposer = randnum.nextInt(12) + 1;
         int chordRandomizer = 1;
-        
-        Emotion.setHighPositiveAffect();
         
         
         NoteMC.transition = map[randnum.nextInt(6)];
@@ -67,7 +69,7 @@ public class MusicGenerator {
         MidiHandler chordRoot = new MidiHandler();
         MidiHandler chordMid = new MidiHandler();
         MidiHandler chordDom = new MidiHandler();
-        Score scr = new Score();
+        
         int crCounter = 0;
         int cmCounter = 0;
         int cdCounter = 0;
@@ -177,9 +179,6 @@ public class MusicGenerator {
             scr.addPart(chordDom.part);
             scr.setTempo(Emotion.emoTempo);
             Mod.transpose(scr, transposer);
-            Play.midi(scr);
             
        }
-    
-    
 }
