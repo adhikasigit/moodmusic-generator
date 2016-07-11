@@ -121,18 +121,18 @@ public class MusicGenerator {
                     }
                     chordMid.phrase.addNote(cMid);
                 }
-                if (cmCounter == 0){
+                if (cdCounter == 0){
                     cDom.setPitch(cRoot.getPitch() + 7);
                     ValMC.nextState();
                     cDom.setLength(ValMap[ValMC.curState - 1]);
                     switch (ValMC.curState) {
-                        case 1 : cmCounter = 1;
+                        case 1 : cdCounter = 1;
                                  break;
-                        case 2 : cmCounter = 2;
+                        case 2 : cdCounter = 2;
                                  break;
-                        case 3 : cmCounter = 4;
+                        case 3 : cdCounter = 4;
                                  break;
-                        case 4 : cmCounter = 8;
+                        case 4 : cdCounter = 8;
                                  break;
                     }
                     chordDom.phrase.addNote(cMid);
@@ -149,8 +149,18 @@ public class MusicGenerator {
                     System.out.println("Note state = " + NoteMC.curState);
                     ValMC.nextState();
                     Note n = new Note();
+                   
                     n.setPitch(Emotion.emoMap[NoteMC.curState - 1] + OctMap[OctMC.curState - 1]);
                     n.setLength(ValMap[ValMC.curState - 1]);
+                    if (crCounter == 0 && ((cRoot.getPitch()%12 == (n.getPitch()%12) + 2) || (cRoot.getPitch()%12 == (n.getPitch()%12) - 2))){
+                        n.setPitch(n.getPitch() + 2);
+                    }
+                    if (cmCounter == 0 && ((cMid.getPitch()%12 == (n.getPitch() % 12) + 2) || (cMid.getPitch()%12 == (n.getPitch() % 12) - 2))){
+                        n.setPitch(n.getPitch() + 2);
+                    }
+                    if (cdCounter == 0 && ((cDom.getPitch() % 12 == (n.getPitch() % 12) + 2) || (cDom.getPitch() % 12 == (n.getPitch() % 12) - 2))){
+                        n.setPitch(n.getPitch() + 2);
+                    }
                     switch (ValMC.curState) {
                         case 1 : mCounter = 1;
                                  break;
