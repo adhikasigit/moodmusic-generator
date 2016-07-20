@@ -22,7 +22,7 @@ public class EmotionHandler {
     
     public void setLowNegativeAffect(){ // Barat
 
-        emoTempo = 70.0;
+        emoTempo = 60.0;
         int map[] = {60,62,64,65,67,69,71};
         emoMap = map;
         
@@ -32,10 +32,10 @@ public class EmotionHandler {
         //NoteMC = NT1;
         //double[][] OT1;
         //OctMC = OT1;
-        double[][] VT1 ={ {0.16,0.32,0.32,0.2},
-                           {0.16,0.32,0.32,0.2},
-                           {0.16,0.32,0.32,0.2},
-                           {0.16,0.32,0.32,0.2}
+        double[][] VT1 ={ {0.16,0.2,0.32,0.32},
+                           {0.16,0.2,0.32,0.32},
+                           {0.16,0.2,0.32,0.32},
+                           {0.16,0.2,0.32,0.32}
                         };
         ValueMC = VT1; 
         
@@ -89,7 +89,7 @@ public class EmotionHandler {
     
     public void setHighPositiveAffect(){
         emoTempo = 180.0;
-        int map[] = {72,74,76,77,79,81,83};
+        int map[] = {60,62,64,65,67,69,71};
         emoMap = map;
         
          double[][] VT1 = { {0.333,0.333,0.167,0.167},
