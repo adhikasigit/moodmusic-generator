@@ -203,7 +203,7 @@ public class EmotionHandler {
     }
     public void setLowPositiveAffect(){
         emoTempo = 70.0;
-        int map[] = {60,62,64,65,67,69,71};
+        int map[] = {48,50,52,53,55,57,59};
         emoMap =  map;
         
         double[][] VT1 = { {0.111,0.222,0.333,0.333},
@@ -231,7 +231,7 @@ public class EmotionHandler {
     }
     public void setDisengagement(){
         emoTempo = 30.0;
-        int map[] = {48,50,52,53,55,57,59};
+        int map[] = {60,62,64,65,67,69,71};
         emoMap = map;
         
         double[][] VT1 = { {0.125,0.125,0.375,0.375},
